@@ -1,7 +1,7 @@
 ### Behind Diffusion Models
 Diffusion models were first introduced in the seminal work by [Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585). The core idea involves reversing a Markov chain-based forward diffusion process, which gradually degrades the structure of the data $\mathbf{z}_0$ from the real data distribution $q(\mathbf{z}_0)$, by adding noise over a sufficient number of steps. When this noise is Gaussian, as is commonly assumed in practice, the cumulative effect transforms the data distribution towards a standard normal distribution $\mathcal{N}(0, I)$ as the forward process progresses. We can then sample from this distribution and use a learned reverse process to generate new samples that match the real data distribution.
 
-Specifically, as illustrated in Figure 1, we define the forward diffusion process $q$ that gradually applies Gaussian noise to the data distribution $\mathbf{z}_0 \sim p(\mathbf{z}_0)$ with a variance schedule $\beta_t \in (0, 1)$ as follows:
+Specifically, as illustrated in Figure 1, we define the forward diffusion process $q$ that gradually applies Gaussian noise to the data distribution $\mathbf{z}_0 \sim q(\mathbf{z}_0)$ with a variance schedule $\beta_t \in (0, 1)$ as follows:
 
 $$
 q(\mathbf{z}_{1:T} \vert \mathbf{z}_0) := \prod_{t=1}^T q(\mathbf{z}_t \vert \mathbf{z}_{t-1}) \tag{1}
