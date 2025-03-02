@@ -8,6 +8,6 @@ redirect_from:
     - /about.html
 ---
 
-Hi! I'm an AI enthusiast. I received a Bachelor of Computer Science from Monash University, and an Honours degree in Computer Science from the University of Sydney.
+Hi! I'm an AI enthusiast. I received a Bachelor of Computer Science degree from Monash University, and an Honours degree in Computer Science from the University of Sydney.
 
 My current study and research interests primarily focus on generative modeling (visual and language).
