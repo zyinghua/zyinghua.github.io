@@ -207,11 +207,16 @@
   ></script>
   {% unless page.pseudocode %}
     <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+    <script defer src="{{ '/assets/js/mathjax-enhanced.js' | relative_url | bust_file_cache }}"></script>
     <script
       defer
       src="{{ site.third_party_libraries.polyfill.url.js }}"
       crossorigin="anonymous"
     ></script>
+    <!-- Fix for links within complex-math divs -->
+    <script defer src="{{ '/assets/js/math-links-fix.js' | relative_url | bust_file_cache }}"></script>
+    <!-- Fix for spacing between math formulas -->
+    <script defer src="{{ '/assets/js/mathjax-spacing-fix.js' | relative_url | bust_file_cache }}"></script>
   {% else %}
     <script src="{{ '/assets/js/pseudocode-setup.js' | relative_url | bust_file_cache }}"></script>
     <script

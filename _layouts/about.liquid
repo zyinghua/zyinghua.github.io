@@ -6,7 +6,7 @@ layout: default
     <h1 class="post-title">
       {% if site.title == 'blank' %}
         <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-        {{ site.last_name }}
+        {{ site.last_name }} {{ site.native_name }}
       {% else %}
         {{ site.title }}
       {% endif %}
@@ -22,11 +22,9 @@ layout: default
           {% if page.profile.image_circular %}
             {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
           {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1
-      rounded' %}
+            {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
           {% endif %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
-      30vw, 95vw"{% endcapture %}
+          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.25}}px, (min-width: 576px) 25vw, 25vw{% endcapture %}
           {%
             include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
             cache_bust=true
@@ -40,38 +38,42 @@ layout: default
 
     <div class="clearfix">{{ content }}</div>
 
-    <!-- News -->
-    {% if page.announcements and page.announcements.enabled %}
-      <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
-      </h2>
-      {% include news.liquid limit=true %}
-    {% endif %}
+    <!-- Social and News in container -->
+    <div class="content-container">
+      <!-- Social -->
+      {% if page.social %}
+        <div class="social {% if page.profile and page.profile.align == 'right' %}social-with-left-profile{% else %}social-with-right-profile{% endif %}">
+          <div class="contact-email"><strong>Contact:</strong> zyinghua [at] brown [dot] edu</div>
+          <div class="contact-icons">{% include social.liquid %}</div>
 
-    <!-- Latest posts -->
-    {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
-      </h2>
-      {% include latest_posts.liquid %}
-    {% endif %}
+          <div class="contact-note">{{ site.contact_note }}</div>
+        </div>
+      {% endif %}
 
-    <!-- Selected papers -->
-    {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
-      </h2>
-      {% include selected_papers.liquid %}
-    {% endif %}
+      <!-- News -->
+      {% if page.announcements and page.announcements.enabled %}
+        <h2>
+          <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
+        </h2>
+        {% include news.liquid limit=true %}
+      {% endif %}
 
-    <!-- Social -->
-    {% if page.social %}
-      <div class="social">
-        <div class="contact-icons">{% include social.liquid %}</div>
+      <!-- Latest posts -->
+      {% if page.latest_posts and page.latest_posts.enabled %}
+        <h2>
+          <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+        </h2>
+        {% include latest_posts.liquid %}
+      {% endif %}
 
-        <div class="contact-note">{{ site.contact_note }}</div>
-      </div>
-    {% endif %}
+      <!-- Selected papers -->
+      {% if page.selected_papers %}
+        <h2>
+          <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
+        </h2>
+        {% include selected_papers.liquid %}
+      {% endif %}
+    </div>
 
     {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
       {% include newsletter.liquid center=true %}

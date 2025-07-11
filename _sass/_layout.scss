@@ -2,8 +2,18 @@
  * Content
  ******************************************************************************/
 
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Set the height to 100% for the flex layout to work */
+}
+
 body {
-  padding-bottom: 70px;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+  min-height: 100vh; /* Use viewport height instead of 100% for better compatibility */
+  margin: 0;
+  padding: 0;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
 
@@ -17,9 +27,15 @@ body {
   }
 }
 
+/* Main content wrapper to push footer to bottom */
+.wrapper {
+  flex: 1 0 auto; /* Allow the wrapper to grow and take up available space */
+  width: 100%; /* Ensure the wrapper takes full width */
+}
+
 body.fixed-top-nav {
   // Add some padding for the nav-bar.
-  padding-top: 56px;
+  padding-top: 56px !important;
 }
 
 body.sticky-bottom-footer {
@@ -35,6 +51,30 @@ body.sticky-bottom-footer {
 .profile {
   img {
     width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .profile img {
+    width: 100%;
+    max-width: 125px;
+  }
+}
+
+// Custom footer styles for a clean and aesthetically pleasing look
+footer.sticky-bottom {
+  border-top: none !important;
+  margin-top: 1.5rem !important; /* Add space above the footer */
+  padding-top: 1.2rem !important; /* Add some padding at the top */
+  margin-bottom: 0 !important;
+  padding-bottom: 0.8rem !important; /* Reduced by 20% from 1rem */
+  display: block !important;
+  line-height: normal !important;
+  flex-shrink: 0; /* Prevent the footer from shrinking */
+  
+  .container {
+    margin-bottom: 0 !important;
+    padding-bottom: 0.4rem !important; /* Reduced by 20% from 0.5rem */
   }
 }
 

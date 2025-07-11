@@ -1,0 +1,56 @@
+/* GitHub Pages Math Fix */
+
+/* Ensure headers inside complex-math are visible */
+.complex-math h1, 
+.complex-math h2, 
+.complex-math h3, 
+.complex-math h4, 
+.complex-math h5, 
+.complex-math h6 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-weight: 600;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: var(--global-text-color);
+}
+
+.complex-math h3 { font-size: 1.5rem !important; }
+.complex-math h4 { font-size: 1.25rem !important; }
+
+/* Fix spacing between paragraphs and math formulas */
+.complex-math p {
+  margin-bottom: 1.2em !important;
+  margin-top: 1.2em !important;
+}
+
+/* Ensure proper spacing between consecutive math formulas */
+.complex-math .MathJax_Display,
+.complex-math .mjx-chtml.MJXc-display {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+}
+
+/* Fix line break handling */
+.complex-math br {
+  display: block !important;
+  content: "" !important;
+  margin-top: 0.5em !important;
+  line-height: 1.6 !important;
+}
+
+/* Fix figure spacing */
+.complex-math .figure-container,
+.complex-math img {
+  margin-top: 2em !important;
+  margin-bottom: 1em !important;
+}
+
+/* Make sure subtitles are properly displayed */
+.complex-math h3, .complex-math h4 {
+  display: block !important;
+  visibility: visible !important;
+  clear: both !important;
+  width: 100% !important;
+} 
