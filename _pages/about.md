@@ -2,33 +2,38 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: Master's student @ Brown CS
 
 profile:
-  align: right
-  image: prof_pic.jpg
+  align: left
+  image: profile.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
+  enabled: false # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+Welcome to my site! I am currently a CS master's student at <a href="https://www.brown.edu/">Brown University</a>. My current study and research interests 
+primarily lie in the field of visual and language generative modeling.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+Prior to Brown, I completed my B.S. in Computer Science at <a href="https://www.monash.edu/">Monash University</a> 
+and received my (first class) Honours degree in Computer Science from <a href="https://www.sydney.edu.au/">The University of Sydney</a>.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Outside of work, I enjoy playing video games 🎮, watching movies 🎥, and playing sports like badminton 🏸, table tennis 🏓, and so on. 
+I'm also deeply interested in AI business and have often thought about launching an AI startup.
+
+<div class="research-highlight">
+  <p class="highlight-title">💡 I am actively looking for research collaborations in the field of image / video generation and editing, 
+    as well as multi-modal learning. Feel free to drop me an email if interested, or just to chat! 👋</p>
+</div>

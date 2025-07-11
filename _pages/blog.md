@@ -21,6 +21,7 @@ pagination:
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}
 
+{% comment %}
 {% if blog_name_size > 0 or blog_description_size > 0 %}
 
   <div class="header-bar">
@@ -28,7 +29,9 @@ pagination:
     <h2>{{ site.blog_description }}</h2>
   </div>
   {% endif %}
+{% endcomment %}
 
+{% comment %}
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
 
   <div class="tag-category-list">
@@ -55,6 +58,7 @@ pagination:
     </ul>
   </div>
   {% endif %}
+{% endcomment %}
 
 {% assign featured_posts = site.posts | where: "featured", "true" %}
 {% if featured_posts.size > 0 %}
@@ -109,6 +113,12 @@ pagination:
       {% assign postlist = site.posts %}
     {% endif %}
 
+    {% if postlist.size == 0 %}
+    <div class="post-empty-message text-center">
+      <h3>No blog posts available</h3>
+      <p>There haven't been any posts to display yet. Please feel free to check back soon!</p>
+    </div>
+    {% else %}
     {% for post in postlist %}
 
     {% if post.external_source == blank %}
@@ -147,6 +157,7 @@ pagination:
         &nbsp; &middot; &nbsp; {{ post.external_source }}
         {% endif %}
       </p>
+      {% comment %}
       <p class="post-tags">
         <a href="{{ year | prepend: '/blog/' | relative_url }}">
           <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
@@ -173,6 +184,7 @@ pagination:
               {% endfor %}
           {% endif %}
     </p>
+    {% endcomment %}
 
 {% if post.thumbnail %}
 
@@ -186,6 +198,7 @@ pagination:
     </li>
 
     {% endfor %}
+    {% endif %}
 
   </ul>
 
