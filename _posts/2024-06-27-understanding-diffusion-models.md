@@ -96,7 +96,7 @@ $$
 
 Recall that combining two Gaussian distributions with different variances, $\mathcal{N}(z; \mu, \sigma_1^2\mathbf{I})$ and $\mathcal{N}(z; \mu, \sigma_2^2\mathbf{I})$, results in $\mathcal{N}(z; \mu, (\sigma_1^2+\sigma_2^2)\mathbf{I})$. Thus, in the case of Equation 7, for transitioning from $t$ to $t-1$, the variance becomes $\sqrt{(1 - \alpha_t) + \alpha_t (1-\alpha_{t-1})} = \sqrt{1 - \alpha_t\alpha_{t-1}}$, with subsequent derivations following the same intuition.
 
-The goal is to learn a network $p_\theta$ that can approximate the actual reverse process. We start by looking at the objective that we want to minimize: the negative log-likelihood, $- \log p_\theta(\mathbf{z}_0)$, which involves maximizing the likelihood of the real data. However, directly optimizing this objective is practically infeasible due to its dependence on the entire sequence of previous steps. As a solution ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585)), we can derive an variational lower bound (vlb) on the data log-likelihood to achieve the same optimization effect:
+The goal is to learn a network $p_\theta$ that can approximate the actual reverse process. We start by looking at the objective that we want to minimize: the negative log-likelihood, $- \log p_\theta(\mathbf{z}_0)$, which involves maximizing the likelihood of the real data. However, directly optimizing this objective is practically infeasible due to its dependence on the entire sequence of previous steps. As a solution ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585)), we can derive an variational upper bound (vub) on the data log-likelihood to achieve the same optimization effect:
 
 $$
 \begin{align}
@@ -106,15 +106,15 @@ $$
 &= -\log p_\theta(\mathbf{z}_0) + \mathbb{E}_q \left[ \log \frac{q(\mathbf{z}_{1:T} \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_{0}, \mathbf{z}_{1:T}) / p_\theta(\mathbf{z}_{0})} \right], \quad \text{using Bayes' rule} \tag{14} \\
 &= -\log p_\theta(\mathbf{z}_0) + \mathbb{E}_q \left[ \log \frac{q(\mathbf{z}_{1:T} \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_{0:T}) / p_\theta(\mathbf{z}_0)} \right] \tag{15} \\
 &= -\log p_\theta(\mathbf{z}_0) + \mathbb{E}_q \left[ \log \frac{q(\mathbf{z}_{1:T} \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_{0:T})} + \log p_\theta(\mathbf{z}_0) \right] \tag{16} \\
-&= \mathbb{E}_q \left[ \log \frac{q(\mathbf{z}_{1:T} \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_{0:T})} \right] := L_{vlb} \tag{17}
+&= \mathbb{E}_q \left[ \log \frac{q(\mathbf{z}_{1:T} \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_{0:T})} \right] := L_{vub} \tag{17}
 \end{align}
 $$
 
-Note that the numerator and denominator of $L_{vlb}$ refer to the forward process and the learned reverse process, respectively. Therefore, we can derive the following expressions ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585), [Ho et al. (2020)](https://arxiv.org/abs/2006.11239)):
+Note that the numerator and denominator of $L_{vub}$ refer to the forward process and the learned reverse process, respectively. Therefore, we can derive the following expressions ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585), [Ho et al. (2020)](https://arxiv.org/abs/2006.11239)):
 
 $$
 \begin{align}
-L_\text{vlb}
+L_\text{vub}
 &= \mathbb{E}_{q} \Bigg[ \log\frac{q(\mathbf{z}_{1:T}\vert\mathbf{z}_0)}{p_\theta(\mathbf{z}_{0:T})} \Bigg] \tag{18} \\
 &= \mathbb{E}_q \Bigg[ \log\frac{\prod_{t=1}^T q(\mathbf{z}_t\vert\mathbf{z}_{t-1})}{ p(\mathbf{z}_T) \prod_{t=1}^T p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t) } \Bigg] \tag{19} \\
 &= \mathbb{E}_q \Bigg[ -\log p(\mathbf{z}_T) + \sum_{t=1}^T \log \frac{q(\mathbf{z}_t\vert\mathbf{z}_{t-1})}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t)} \Bigg], \quad \text{using Logarithmic rules} \tag{20} \\
@@ -126,7 +126,7 @@ Here, given the intrinsically high variance in the intermediate samples that int
 
 $$
 \begin{align}
-L_\text{vlb}
+L_\text{vub}
 &= \mathbb{E}_q \Bigg[ -\log p(\mathbf{z}_T) + \sum_{t=2}^T \log \frac{q(\mathbf{z}_t\vert\mathbf{z}_{t-1})}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t)} + \log\frac{q(\mathbf{z}_1 \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_0 \vert \mathbf{z}_1)} \Bigg] \tag{22} \\
 &= \mathbb{E}_q \Bigg[ -\log p(\mathbf{z}_T) + \sum_{t=2}^T \log \frac{q(\mathbf{z}_{t-1}\vert\mathbf{z}_{t}) q(\mathbf{z}_t)}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t) q(\mathbf{z}_{t-1})} + \log\frac{q(\mathbf{z}_1 \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_0 \vert \mathbf{z}_1)} \Bigg], \quad \text{using Bayes' rule} \tag{23} \\
 &= \mathbb{E}_q \Bigg[ -\log p(\mathbf{z}_T) + \sum_{t=2}^T \log \Bigg( \frac{q(\mathbf{z}_{t-1} \vert \mathbf{z}_t, \mathbf{z}_0)}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t)} \cdot \frac{q(\mathbf{z}_t \vert \mathbf{z}_0)}{q(\mathbf{z}_{t-1}\vert\mathbf{z}_0)} \Bigg) + \log \frac{q(\mathbf{z}_1 \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_0 \vert \mathbf{z}_1)} \Bigg] \tag{24} \\
@@ -144,7 +144,7 @@ Where the intermediate terms cancel out, resulting in $\log \frac{q(\mathbf{z}_T
 
 $$
 \begin{align}
-L_\text{vlb}
+L_\text{vub}
 &= \mathbb{E}_q \Bigg[ -\log p(\mathbf{z}_T) + \sum_{t=2}^T \log \frac{q(\mathbf{z}_{t-1} \vert \mathbf{z}_t, \mathbf{z}_0)}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t)} + \sum_{t=2}^T \log \frac{q(\mathbf{z}_t \vert \mathbf{z}_0)}{q(\mathbf{z}_{t-1} \vert \mathbf{z}_0)} + \log\frac{q(\mathbf{z}_1 \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_0 \vert \mathbf{z}_1)} \Bigg] \tag{27} \\
 &= \mathbb{E}_q \Bigg[ -\log p(\mathbf{z}_T) + \sum_{t=2}^T \log \frac{q(\mathbf{z}_{t-1} \vert \mathbf{z}_t, \mathbf{z}_0)}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t)} + \log\frac{q(\mathbf{z}_T \vert \mathbf{z}_0)}{q(\mathbf{z}_1 \vert \mathbf{z}_0)} + \log \frac{q(\mathbf{z}_1 \vert \mathbf{z}_0)}{p_\theta(\mathbf{z}_0 \vert \mathbf{z}_1)} \Bigg] \tag{28} \\
 &= \mathbb{E}_q \Bigg[ \log\frac{q(\mathbf{z}_T \vert \mathbf{z}_0)}{p(\mathbf{z}_T)} + \sum_{t=2}^T \log \frac{q(\mathbf{z}_{t-1} \vert \mathbf{z}_t, \mathbf{z}_0)}{p_\theta(\mathbf{z}_{t-1} \vert\mathbf{z}_t)} - \log p_\theta(\mathbf{z}_0 \vert \mathbf{z}_1) \Bigg], \quad \text{using Logarithmic rules} \tag{29} \\
