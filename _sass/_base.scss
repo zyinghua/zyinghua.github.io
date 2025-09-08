@@ -403,6 +403,10 @@ ul.task-list input[type="checkbox"] {
         transition-property: all 0.2s ease-in-out;
       }
 
+      .si {
+        margin-top: 0.2rem;
+      }
+
       &:hover {
         i::before {
           color: var(--global-theme-color);
