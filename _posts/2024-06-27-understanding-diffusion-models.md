@@ -74,7 +74,7 @@ $$
 Where all $\mathbf{z}_t$ for $t \in \{0, 1, \ldots, T \}$ share the same dimensionality, $p_{\theta}(\mathbf{z}_{t-1} \vert \mathbf{z}_{t})$ is practically a neural network learned to approximate the actual reverse distribution $q(\mathbf{z}_{t-1} \vert \mathbf{z}_{t})$, as it depends on the entire dataset which is not easily accessible. The term $p_{\theta}(\mathbf{z}_{0:T})$ denotes the entire learned reverse process.
 
 
-An interesting property of the forward process is the existence of a closed-form sampling solution for $\mathbf{z}_t$ at an arbitrary $t \in [0, T]$ using the reparameterization trick. By defining $\alpha_t := 1 - \beta_t$ and $\bar{\alpha}_t := \prod_{i=1}^{t} \alpha_i$, given Equation 2, and recall that $\mathcal{N}(z; \mu, \sigma^2\mathbf{I})$ is equivalent to $z = \mu + \sigma \epsilon$ where $\epsilon \sim \mathcal{N}(0, 1)$, we obtain:
+An interesting property of the forward process is the existence of a closed-form sampling solution for $\mathbf{z}_t$ at an arbitrary $t \in [0, T]$ using the reparameterization trick. By defining $\alpha_t := 1 - \beta_t$ and $\bar{\alpha}_t := \prod_{i=1}^{t} \alpha_i$, given Equation (2), and recall that $\mathcal{N}(z; \mu, \sigma^2\mathbf{I})$ is equivalent to $z = \mu + \sigma \epsilon$ where $\epsilon \sim \mathcal{N}(0, 1)$, we obtain:
 
 $$
 \begin{align}
@@ -94,7 +94,7 @@ $$
 q(\mathbf{z}_t \vert \mathbf{z}_0) = \mathcal{N}(\mathbf{z}_t; \sqrt{\bar{\alpha}_t} \mathbf{z}_0, (1 - \bar{\alpha}_t) \mathbf{I}) \tag{11}
 $$
 
-Recall that combining two Gaussian distributions with different variances, $\mathcal{N}(z; \mu, \sigma_1^2\mathbf{I})$ and $\mathcal{N}(z; \mu, \sigma_2^2\mathbf{I})$, results in $\mathcal{N}(z; \mu, (\sigma_1^2+\sigma_2^2)\mathbf{I})$. Thus, in the case of Equation 7, for transitioning from $t$ to $t-1$, the variance becomes $\sqrt{(1 - \alpha_t) + \alpha_t (1-\alpha_{t-1})} = \sqrt{1 - \alpha_t\alpha_{t-1}}$, with subsequent derivations following the same intuition.
+Recall that combining two Gaussian distributions with different variances, $\mathcal{N}(z; \mu, \sigma_1^2\mathbf{I})$ and $\mathcal{N}(z; \mu, \sigma_2^2\mathbf{I})$, results in $\mathcal{N}(z; \mu, (\sigma_1^2+\sigma_2^2)\mathbf{I})$. Thus, in the case of Equation (7), for transitioning from $t$ to $t-1$, the variance becomes $\sqrt{(1 - \alpha_t) + \alpha_t (1-\alpha_{t-1})} = \sqrt{1 - \alpha_t\alpha_{t-1}}$, with subsequent derivations following the same intuition.
 
 The goal is to learn a network $p_\theta$ that can approximate the actual reverse process. We start by looking at the objective that we want to minimize: the negative log-likelihood, $- \log p_\theta(\mathbf{z}_0)$, which involves maximizing the likelihood of the real data. However, directly optimizing this objective is practically infeasible due to its dependence on the entire sequence of previous steps. As a solution ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585)), we can derive an variational upper bound (vub) on the data log-likelihood to achieve the same optimization effect:
 
@@ -152,11 +152,11 @@ L_\text{vub}
 \end{align}
 $$
 
-Recall that in Equation 2, the forward process requires a variance term $\beta_t$, which can either be learned through reparameterization ([Kingma and Welling (2013)](https://arxiv.org/abs/1312.6114)) or treated as hyperparameters fixed as time-dependent constants, both retaining the same functional form ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585)). The subsequent groundbreaking work by [Ho et al. (2020)](https://arxiv.org/abs/2006.11239) adopts the latter approach. Specifically, $\beta_t$ is set according to a linearly increasing schedule within a specific range based on the timesteps, although subsequent work ([Nichol and Dhariwal (2021)](https://arxiv.org/abs/2102.09672)) has proposed other scheduling schemes.
+Recall that in Equation (2), the forward process requires a variance term $\beta_t$, which can either be learned through reparameterization ([Kingma and Welling (2013)](https://arxiv.org/abs/1312.6114)) or treated as hyperparameters fixed as time-dependent constants, both retaining the same functional form ([Sohl-Dickstein et al. (2015)](https://arxiv.org/abs/1503.03585)). The subsequent groundbreaking work by [Ho et al. (2020)](https://arxiv.org/abs/2006.11239) adopts the latter approach. Specifically, $\beta_t$ is set according to a linearly increasing schedule within a specific range based on the timesteps, although subsequent work ([Nichol and Dhariwal (2021)](https://arxiv.org/abs/2102.09672)) has proposed other scheduling schemes.
 
-Given that we have fixed the forward process variances $\beta_t$, in Equation 30, since $\mathbf{z}_T$ is Gaussian noise sampled from $\mathcal{N}(0, I)$ and $q$ has no learnable parameters, while $p(\mathbf{z}_T)$ converges to the normal distribution $\mathcal{N}(0, I)$ given a sufficiently large $T$. Therefore, the $L_T$ term is constant and typically small, allowing it to be ignored, and we only need to focus on minimizing the $L_{t-1}$ and $L_0$ terms.
+Given that we have fixed the forward process variances $\beta_t$, in Equation (30), since $\mathbf{z}_T$ is Gaussian noise sampled from $\mathcal{N}(0, I)$ and $q$ has no learnable parameters, while $p(\mathbf{z}_T)$ converges to the normal distribution $\mathcal{N}(0, I)$ given a sufficiently large $T$. Therefore, the $L_T$ term is constant and typically small, allowing it to be ignored, and we only need to focus on minimizing the $L_{t-1}$ and $L_0$ terms.
 
-Recall that conditioning on $\mathbf{z}_0$ in Equation 24 makes the reverse posterior tractable, let:
+Recall that conditioning on $\mathbf{z}_0$ in Equation (24) makes the reverse posterior tractable, let:
 
 $$
 q(\mathbf{z}_{t-1} \vert \mathbf{z}_t, \mathbf{z}_0) = \mathcal{N}(\mathbf{z}_{t-1}; {\tilde{\mu}}(\mathbf{z}_t, \mathbf{z}_0), {\tilde{\beta}_t} \mathbf{I}) \tag{31}
@@ -187,13 +187,13 @@ q(\mathbf{z}_{t-1} \vert \mathbf{z}_t, \mathbf{z}_0)
 \end{align}
 $$
 
-Where the function $\Lambda(\mathbf{z}_t, \mathbf{z}_0)$ is irrelevant of $\mathbf{z}_{t-1}$, and hence is treated as a constant being ignored. By identifying the coefficients in Equation 37 as the form of:
+Where the function $\Lambda(\mathbf{z}_t, \mathbf{z}_0)$ is irrelevant of $\mathbf{z}_{t-1}$, and hence is treated as a constant being ignored. By identifying the coefficients in Equation (37) as the form of:
 
 $$
 -\frac{1}{2} \left( A z_{t-1}^2 - 2 B z_{t-1} + \Lambda \right) \tag{38}
 $$
 
-With reference to Equation 31, we have:
+With reference to Equation (31), we have:
 
 $$
 \begin{align}
@@ -208,13 +208,13 @@ $$
 \end{align}
 $$
 
-Recall Equation 10, which allows us to directly sample $\mathbf{z}_t$ from $\mathbf{z}_0$ at any arbitrary $t$. Similarly, we can perform the reverse to obtain $\mathbf{z}_0$ directly from $\mathbf{z}_t$ at any arbitrary $t$, as follows:
+Recall Equation (10), which allows us to directly sample $\mathbf{z}_t$ from $\mathbf{z}_0$ at any arbitrary $t$. Similarly, we can perform the reverse to obtain $\mathbf{z}_0$ directly from $\mathbf{z}_t$ at any arbitrary $t$, as follows:
 
 $$
 \mathbf{z}_0 = \frac{\mathbf{z}_t - \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}}{\sqrt{\bar{\alpha}_t}} \tag{43}
 $$
 
-Plugging into $\tilde{\mu}_t (\mathbf{z}_t, \mathbf{z}_0)$ in Equation 42, we can further simplify to:
+Plugging into $\tilde{\mu}_t (\mathbf{z}_t, \mathbf{z}_0)$ in Equation (42), we can further simplify to:
 
 $$
 \begin{align}
@@ -280,7 +280,7 @@ $$
 \end{aligned}
 $$
 
-Algorithm 1 and Algorithm 2 outline the training and sampling processes of DDPM ([Ho et al. (2020)](https://arxiv.org/abs/2006.11239)), respectively. However, this sampling scheme is significantly less efficient compared to other generative models such as Generative Adversarial Networks (GANs). Subsequent work by [Song et al. (2021)](https://arxiv.org/abs/2010.02502), termed as DDIM ([Song et al. (2021)](https://arxiv.org/abs/2010.02502)) addresses this inefficiency by generalizing the forward and reverse diffusion processes to non-Markovian ones. Specifically, with the exact same training objective as in DDPM, another sampling scheme is proposed to sample $\mathbf{z}_{s}$ given $\mathbf{z}_t$, where $s < t$:
+Algorithm 1 and Algorithm 2 outline the training and sampling processes of DDPM ([Ho et al. (2020)](https://arxiv.org/abs/2006.11239)), respectively. Note that the sampling scheme follows Equation (4) with the aforementioned settings. However, this sampling scheme is significantly less efficient compared to other generative models such as Generative Adversarial Networks (GANs), as it could potentially involve a singificant number of sampling iterations to obtain a good result. Subsequent work by [Song et al. (2021)](https://arxiv.org/abs/2010.02502), termed as DDIM ([Song et al. (2021)](https://arxiv.org/abs/2010.02502)) addresses this inefficiency by generalizing the forward and reverse diffusion processes to non-Markovian ones. Specifically, with the exact same training objective as in DDPM, another sampling scheme is proposed to sample $\mathbf{z}_{s}$ given $\mathbf{z}_t$, where $s < t$:
 
 $$
 \mathbf{z}_{s} = \sqrt{\bar{\alpha}_{s}} 
@@ -297,7 +297,7 @@ Here, $\epsilon \in \mathcal{N}(0, \mathbf{I})$. Note that when $\sigma_t = \sqr
 
 <h4 style="display:block !important; visibility:visible !important; font-size:1.25rem !important; margin-top:2rem !important; margin-bottom:1rem !important;">Diffusion Guidance</h4>
 
-Guidance methods have been proposed to steer the diffusion generation towards catering the faithfulness of certain classes or conditions, specifically, the classifier guidance ([Dhariwal and Nichol (2021)](https://arxiv.org/abs/2105.05233)) and classifier-free guidance ([Ho and Salimans (2022)](https://arxiv.org/abs/2207.12598)). Classifier guidance aims at explicitly incorporating class information during sampling via the gradients of a noise-aware classifier $f_\phi$. Given the class information $y$, we have:
+Guidance methods have been proposed to control the strength of steering the diffusion generation towards catering the faithfulness of certain classes or conditions, specifically, the classifier guidance ([Dhariwal and Nichol (2021)](https://arxiv.org/abs/2105.05233)) and classifier-free guidance ([Ho and Salimans (2022)](https://arxiv.org/abs/2207.12598)). Classifier guidance aims at explicitly incorporating class information during sampling via the gradients of a noise-aware classifier $f_\phi$. Given the class information $y$, we have:
 
 $$
 \begin{align}
