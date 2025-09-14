@@ -7,39 +7,6 @@ tags: machine-learning diffusion-models deep-learning generative-models
 categories: machine-learning
 ---
 
-<style>
-/* GitHub Pages compatibility fixes */
-.complex-math h3, 
-.complex-math h4 {
-  display: block !important;
-  visibility: visible !important;
-  font-weight: 600 !important;
-  margin-top: 2rem !important;
-  margin-bottom: 1rem !important;
-  line-height: 1.25 !important;
-}
-.complex-math h3 { font-size: 1.5rem !important; }
-.complex-math h4 { font-size: 1.25rem !important; }
-
-.complex-math p {
-  margin-bottom: 1.2em !important;
-  margin-top: 1.2em !important;
-}
-
-.complex-math .MathJax_Display,
-.complex-math .mjx-chtml.MJXc-display {
-  margin-top: 1em !important;
-  margin-bottom: 1em !important;
-}
-
-.complex-math br {
-  display: block !important;
-  margin-top: 0.5em !important;
-}
-</style>
-
-<script defer src="{{ '/assets/js/check-mathjax.js' | relative_url }}"></script>
-
 ### Behind Diffusion Models
 
 <div class="complex-math">
