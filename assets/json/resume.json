@@ -65,8 +65,11 @@
       "icon": "fa-solid fa-tag",
       "keywords": [
         "Generative AI",
-        "Controllable Visual Generation",
-        "Image / Video Generation and Editing"
+        "Controllable Image/Video/3D Generation",
+        "3D Reconstruction",
+        "4D Generation",
+        "Representation Learning",
+        "World Model"
       ]
     }
   ],
