@@ -56,9 +56,9 @@ ninja.data = [{
             window.location.href = "/blog/2024/grad-nan-solutions/";
           
         },
-      },{id: "post-conda-setup-diary",
+      },{id: "post-conda-environment-setup-diary",
         
-          title: "Conda Setup Diary",
+          title: "Conda Environment Setup Diary",
         
         description: "A guide on setting up conda environments on a computing server for AI research",
         section: "Posts",
