@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Conda Setup Diary"
+title: "Conda Environment Setup Diary"
 date: 2023-09-13
 description: A guide on setting up conda environments on a computing server for AI research
 tags: conda computing-server research-experiments
@@ -151,3 +151,14 @@ categories: tutorials
 
     > `scp -P 22 /Users/username/Desktop/test.txt username@server-ip:~/home/username/test.txt`
 
+11. Download Huggingface parquet dataset:
+
+    > apt-get update
+
+    > apt-get install git-lfs
+
+    > git lfs install
+
+    > git clone \<hugginface repo link\>
+
+    This will download the actual data instead of the light parquet files. You can then decode the files to the original data.
