@@ -54,15 +54,23 @@ Pull from the repository cloned while staying in that clone (which contains .git
 
 To check all the branches:
 
-> `$ git branch`
+> `$ git branch -a`
 
 To add a new branch:
 
 > `$ git branch branchname`
 
+Or optionally choose a specific branch as a default:
+
+> `$ git branch branchname branchname-copy-from`
+
 To change to a specific branch:
 
 > `$ git checkout branchname`
+
+To specify remote ref for current branch;
+
+> `$ git push --set-upstream origin my-main`
 
 Once commited in a non-main branch, the changes will not be visible to the other branches! Until the merge.
 
