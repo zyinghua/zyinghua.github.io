@@ -98,3 +98,27 @@ and obtain the commit ID (e.g., a6b1234), then:
 > `$ git reset --hard <commit_id>`
 > 
 > `$ git push --force`
+
+### Revert Partial Changes in the differences between base and changed branches (with PR reflection)
+Sometimes when you make a PR, and you are asked to keep only some partial changes (i.e., remove some
+intermediate commits between the commit chain), you may do this:
+
+1. Firstly, if you are referring to a remote branch, and you don't have a main branch that keeps up-to-date
+with the remote main branch, then do (Otherwise please proceed to next):
+> `git remote add upstream https://github.com/<original-owner>/<original-repo>.git`
+> `git fetch upstream`
+
+2. Make sure you are in your branch with changes:
+> `git checkout <branch-name-with-changes>`
+
+3. Rebase the branch (You may call origin/main if you skipped step 1):
+> `git rebase -i upstream/main`
+
+4. Now you should be in a state of file editing, by default you are in Vim (default editor for Git rebase) most likely,
+then to delete commits, simply use up/down arrows to switch to the lines of commits you wanna delete and do `dd`. After that,
+go to the bottom and type `:wq`, which means save write and quit. Now the edits are completed and only partial commits are kept.
+
+5. To push to remote safely and reflect on the PR:
+> `git push --force-with-lease origin <branch-name-with-changes>`
+
+6. All set!
