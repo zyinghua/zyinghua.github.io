@@ -123,6 +123,9 @@ categories: tutorials
    
      > `exit`
 
+   - Scroll within a tmux window:
+     > `Ctrl + b` then `[`
+
    Outside tmux:
    
    - Check all the windows:
