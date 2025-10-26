@@ -99,6 +99,13 @@ and obtain the commit ID (e.g., a6b1234), then:
 > 
 > `$ git push --force`
 
+### Local Soft Revert
+You have done git commit, but want to revert back to AFTER git add (keep staged):
+> `git reset --soft HEAD~1`
+
+You have done git commit, but want to revert back to BEFORE git add (keep unstaged):
+> `git reset --mixed HEAD~1`
+
 ### Revert Partial Changes in the differences between base and changed branches (with PR reflection)
 Sometimes when you make a PR, and you are asked to keep only some partial changes (i.e., remove some
 intermediate commits between the commit chain), you may do this:
