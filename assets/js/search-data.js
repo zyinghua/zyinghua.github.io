@@ -38,7 +38,7 @@ ninja.data = [{
         
           title: "Understanding Diffusion Models",
         
-        description: "A comprehensive mathematical explanation of diffusion models, their forward and reverse processes",
+        description: "A mathematical explanation of diffusion models, their forward and reverse processes",
         section: "Posts",
         handler: () => {
           
