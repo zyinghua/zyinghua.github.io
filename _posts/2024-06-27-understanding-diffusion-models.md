@@ -2,7 +2,7 @@
 layout: post
 title: "Understanding Diffusion Models"
 date: 2024-06-27
-description: A comprehensive mathematical explanation of diffusion models, their forward and reverse processes
+description: A mathematical explanation of diffusion models, their forward and reverse processes
 tags: machine-learning diffusion-models deep-learning generative-models
 categories: machine-learning
 ---
@@ -326,4 +326,6 @@ Another notable advancement in diffusion models is the advent of Latent Diffusio
 
 
 ---
-##### Thanks for reading! If you find any mistakes or have any questions, please feel free to contact me :D
+#### Thanks for reading! If you find any mistakes or have any questions, please feel free to contact me!
+#### [Markdown version](https://github.com/zyinghua/zyinghua.github.io/blob/main/_posts/2024-06-27-understanding-diffusion-models.md)
+#### [Recommended Paper!](https://arxiv.org/pdf/2208.11970) (A comprehensive math explanation from ELBO -> VAE -> HVAE -> VDM)
