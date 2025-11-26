@@ -106,6 +106,9 @@ You have done git commit, but want to revert back to AFTER git add (keep staged)
 You have done git commit, but want to revert back to BEFORE git add (keep unstaged):
 > `git reset --mixed HEAD~1`
 
+You have made some changes to a file without git commit, but want to revert back to last commit (BEFORE current changes):
+> `git checkout HEAD -- path/to/file`
+
 ### Revert Partial Changes in the differences between base and changed branches (with PR reflection)
 Sometimes when you make a PR, and you are asked to keep only some partial changes (i.e., remove some
 intermediate commits between the commit chain), you may do this:
