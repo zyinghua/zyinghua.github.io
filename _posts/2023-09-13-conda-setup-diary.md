@@ -43,6 +43,10 @@ categories: tutorials
    ```bash
    conda create -n <env-name> python=<python-version> tensorflow=<tensorflow-version>
    ```
+   Or with a specific path to store the conda packages (useful when storage sensitive)
+   ```bash
+   conda create -p <env-path> python=<python-version> tensorflow=<tensorflow-version>
+   ```
    The python and tensorflow version specification are optional, when specified, the environment will be created with the specified python and tensorflow version.
 
    Or if you have a environment.yaml file in the repo, you can do:
