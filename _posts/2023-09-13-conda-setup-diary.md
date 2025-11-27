@@ -103,7 +103,7 @@ categories: tutorials
 
 7. Open up a sub-window system (this is useful for guarding the process from ssh disconnection):
    
-   > `tmux`
+   > `tmux new -s <session name>`
 
    within tmux:
    
