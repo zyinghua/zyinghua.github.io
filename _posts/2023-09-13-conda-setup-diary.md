@@ -101,7 +101,7 @@ categories: tutorials
 
    > `gpustat -i`
 
-7. Open up a sub-window system:
+7. Open up a sub-window system (this is useful for guarding the process from ssh disconnection):
    
    > `tmux`
 
