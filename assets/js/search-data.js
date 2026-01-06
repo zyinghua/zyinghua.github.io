@@ -141,6 +141,13 @@ ninja.data = [{
           window.open("https://github.com/zyinghua", "_blank");
         },
       },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/yinghuazh", "_blank");
+        },
+      },{
         id: 'social-leetcode',
         title: 'LeetCode',
         section: 'Socials',
