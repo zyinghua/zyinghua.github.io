@@ -64,10 +64,12 @@
       "name": "Artificial Intelligence",
       "icon": "fa-solid fa-tag",
       "keywords": [
+        "AI Personalization",
         "Generative AI",
-        "Controllable and High-Fidelity Image/Video/3D/4D Generation",
-        "3D Reconstruction",
-        "AI Personalization"
+        "Embodied AI",
+        "3D Scene Understanding",
+        "3D Generation / Reconstruction",
+        "Video Generation"
       ]
     }
   ],
