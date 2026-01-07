@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Yinghua
 middle_name: 
 last_name: Zhou
-native_name: 周映铧
+native_name:
 contact_note: >
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Yinghua Zhou's site.
