@@ -148,13 +148,6 @@ ninja.data = [{
           window.open("https://twitter.com/yinghuazh", "_blank");
         },
       },{
-        id: 'social-leetcode',
-        title: 'LeetCode',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://leetcode.com/u/nbpppp/", "_blank");
-        },
-      },{
       id: 'light-theme',
       title: 'Change theme to light',
       description: 'Change the theme of the site to Light',
