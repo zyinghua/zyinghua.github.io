@@ -6,7 +6,8 @@
       "url": "https://www.brown.edu/",
       "studyType": "M.S. in Computer Science",
       "startDate": "2025-09",
-      "endDate": "2027-05"
+      "endDate": "2027-05",
+      "score": "4/4"
     },
     {
       "institution": "University of Sydney",
@@ -15,7 +16,7 @@
       "studyType": "B.S. in Computer Science (Honours)",
       "startDate": "2023-07",
       "endDate": "2024-07",
-      "score": "High Distinction (90/100)"
+      "score": "High Distinction"
     },
     {
       "institution": "Monash University",
