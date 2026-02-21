@@ -42,17 +42,14 @@
       "title": "CVD-GuidedDiff: Towards Degree Adaptable Image Generation with Guided Diffusion Models for Individuals with Color Vision Deficiency",
       "institution": "University of Sydney",
       "location": "Sydney, Australia",
-      "position": "Honours Researcher",
       "startDate": "2024-01",
       "endDate": "2024-05",
-      "summary": "Developed a novel framework based on diffusion models for degree-adaptable image generation for individuals with color vision deficiency. The thesis earned a High Distinction from the faculty.",
       "keywords": ["Image Generation", "Diffusion Models", "Color Vision Deficiency"]
     },
     {
-      "title": "Bridge Cheating Detection based on Deep Learning",
+      "title": "Research Assistant (Deep Learning)",
       "institution": "Monash University",
       "location": "Melbourne, Australia",
-      "position": "Research Assistant",
       "startDate": "2023-06",
       "endDate": "2023-07"
     }
@@ -74,11 +71,10 @@
       "name": "Artificial Intelligence",
       "icon": "fa-solid fa-tag",
       "keywords": [
-        "AI Personalization",
+        "Deep AI Personalization",
         "Generative AI",
         "Embodied AI",
-        "3D Scene Understanding",
-        "3D Generation / Reconstruction",
+        "3D/4D Generation/Reconstruction",
         "Video Generation"
       ]
     }
