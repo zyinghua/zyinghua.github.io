@@ -32,5 +32,5 @@ and received my (first class) Honours degree in Computer Science from <a href="h
 Outside of work, I enjoy playing video games 🎮, watching movies 🎥, and playing sports like badminton 🏸, table tennis 🏓, and so on. I'm also deeply interested in AI entrepreneurship.
 
 <div class="research-highlight">
-  <p class="highlight-title">💡 I am actively looking for research collaborations in 3D and generative modeling. Feel free to drop me an email if interested, or just to say hi! 👋</p>
+  <p class="highlight-title">💡 I am actively looking for research collaborations in video/3D generative modeling. Feel free to drop me an email if interested, or just to say hi! 👋</p>
 </div>
