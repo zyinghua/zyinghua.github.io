@@ -7,7 +7,7 @@
       "studyType": "M.S. in Computer Science",
       "startDate": "2025-09",
       "endDate": "2027-05",
-      "score": "4/4"
+      "score": "4.0"
     },
     {
       "institution": "University of Sydney",
@@ -45,13 +45,6 @@
       "startDate": "2024-01",
       "endDate": "2024-05",
       "keywords": ["Image Generation", "Diffusion Models", "Color Vision Deficiency"]
-    },
-    {
-      "title": "Research Assistant (Deep Learning)",
-      "institution": "Monash University",
-      "location": "Melbourne, Australia",
-      "startDate": "2023-06",
-      "endDate": "2023-07"
     }
   ],
   "work experience": [
@@ -64,6 +57,14 @@
       "endDate": "2024-12",
       "summary": "Participate in the Large Language Model (LLM) Pre-Training phase and relevant post businesses with key responsibilities including conducting systematic research and experiments to optimize technical processes and practices, performing Prompt Engineering for diverse LLM tasks such as automated data synthesis and evaluation, and developing code for data processing, LLM agentic workflow construction and relevant systems (e.g., RAG, Function calling).",
       "highlights": ["Large Language Models", "Prompt Engineering", "LLM Agent"]
+    },
+    {
+      "name": "Monash University",
+      "position": "Research Assistant (Deep Learning)",
+      "url": "https://www.monash.edu/",
+      "location": "Melbourne, Australia",
+      "startDate": "2023-06",
+      "endDate": "2023-07"
     }
   ],
   "interests": [
@@ -72,9 +73,7 @@
       "icon": "fa-solid fa-tag",
       "keywords": [
         "Deep AI Personalization",
-        "Generative AI",
         "Embodied AI",
-        "3D/4D Generation/Reconstruction",
         "Video Generation"
       ]
     }
