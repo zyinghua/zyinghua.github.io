@@ -141,6 +141,13 @@ ninja.data = [{
           window.open("https://github.com/zyinghua", "_blank");
         },
       },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/yinghua-zhou-7b95b521a", "_blank");
+        },
+      },{
         id: 'social-x',
         title: 'X',
         section: 'Socials',
