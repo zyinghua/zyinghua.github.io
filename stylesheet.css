@@ -114,6 +114,9 @@ h2 {
   cursor: default;
 }
 
+/* mobile-only floated photo — the text wraps around it on narrow screens */
+.profile-pic-mobile { display: none; }
+
 /* ---- contact line + links row ---- */
 .contact-line { color: var(--muted); }
 
@@ -377,10 +380,24 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width:
    ============================================================ */
 @media (max-width: 620px) {
   .name { font-size: 32px; }
-  .profile-pic { width: 176px; height: 176px; }
   .post-header h1 { font-size: 30px; }
   .top-nav { top: 14px; }
   .blog-tab { font-size: 16px; }
   .banner { padding: 18px 20px; }
   .banner .banner-title { font-size: 20px; }
+
+  /* header reflows to a single column: photo floats inside the text */
+  .photo-cell { display: none; }
+  .intro-cell { width: 100% !important; max-width: 100% !important; }
+  .profile-pic-mobile {
+    display: block;
+    float: right;
+    width: 132px;
+    height: 132px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--card);
+    box-shadow: 0 4px 14px rgba(60, 45, 25, .16);
+    margin: 4px 0 10px 18px;
+  }
 }
