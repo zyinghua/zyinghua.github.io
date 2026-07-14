@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Conda Environment Setup Diary — Yinghua Zhou</title>
+    <meta name="author" content="Yinghua Zhou">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+    <link rel="shortcut icon" href="../../images/favicon.jpg" type="image/jpeg">
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../pygments.css">
+  </head>
+  <body>
+    <a class="blog-tab" href="../../index.html">Home</a>
+    <div class="post">
+      <div class="post-nav"><a href="../index.html">&larr; All posts</a></div>
+      <div class="post-header">
+        <h1>Conda Environment Setup Diary</h1>
+        <div class="post-meta">September 13, 2023</div>
+        <div class="post-tags"><span class="tag">#conda</span><span class="tag">#computing-server</span><span class="tag">#research-experiments</span></div>
+      </div>
+      <div class="post-body">
+<h4>This is the general steps on top of my head, that I followed to set up the conda environment on a computing server for a new user account, which might be commonly encountered when doing AI research.</h4>
+<hr />
+<ol>
+<li>
+<p>Log onto the server via SSH:
+    <div class="codehilite"><pre><span></span><code>ssh<span class="w"> </span>&lt;username&gt;@&lt;server-ip&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;port&gt;
+</code></pre></div>
+   Make sure you activate the VPN if necessary. You will then be prompted to enter the password for the user account.</p>
+</li>
+<li>
+<p>Once logged in, you will need to set up for environments, in AI research, typically we use conda. Make sure to download the latest version of miniconda from the official website, and install it on the server. At this time, the command to download the latest miniconda is:
+    <div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+</code></pre></div>
+    Once downloaded, run the script as:
+    <div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+</code></pre></div>
+   Once you run the installer, you will be presented with a series of prompts. It's generally safe to accept the defaults. When asked if you'd like to prepend the Miniconda3 install location to PATH in your ~/.bashrc, you can opt to say 'yes'. This ensures that you can activate Conda from any new terminal. </p>
+</li>
+<li>
+<p>Close and reopen your terminal or use the command to reload the profile:
+    <div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>init<span class="w"> </span>bash
+</code></pre></div>
+    <div class="codehilite"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div></p>
+</li>
+<li>
+<p>Once conda is installed, you can create a new environment for your project, by running:
+   <div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;env-name&gt;<span class="w"> </span><span class="nv">python</span><span class="o">=</span>&lt;python-version&gt;<span class="w"> </span><span class="nv">tensorflow</span><span class="o">=</span>&lt;tensorflow-version&gt;
+</code></pre></div>
+   Or with a specific path to store the conda packages (useful when storage sensitive)
+   <div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>create<span class="w"> </span>-p<span class="w"> </span>&lt;env-path&gt;<span class="w"> </span><span class="nv">python</span><span class="o">=</span>&lt;python-version&gt;<span class="w"> </span><span class="nv">tensorflow</span><span class="o">=</span>&lt;tensorflow-version&gt;
+</code></pre></div>
+   The python and tensorflow version specification are optional, when specified, the environment will be created with the specified python and tensorflow version.</p>
+</li>
+</ol>
+<p>Or if you have a environment.yaml file in the repo, you can do:
+   <div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yaml
+</code></pre></div>
+   which takes care of the installation of all necessary packages.</p>
+<ol start="5">
+<li>you can then activate the environment by running:
+   <div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>&lt;env-name&gt;
+</code></pre></div>
+   And deactivate it by running:
+    <div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>deactivate
+</code></pre></div></li>
+</ol>
+<h4><strong>Note:</strong> You may need to run <code>source ~/.bashrc</code> at the time you enter the server, to make sure the conda command is available.</h4>
+<hr />
+<h3>Some useful commands:</h3>
+<ol>
+<li>
+<p>Install package via conda:</p>
+<blockquote>
+<p><code>~$ conda install &lt;package-name&gt;=&lt;package-version:optional&gt;</code></p>
+</blockquote>
+<p>To uninstall:</p>
+<blockquote>
+<p><code>~$ conda uninstall &lt;package-name&gt;</code></p>
+</blockquote>
+</li>
+<li>
+<p>Install package via pip:</p>
+<blockquote>
+<p><code>~$ pip install &lt;package-name&gt;=&lt;package-version:optional&gt;</code></p>
+</blockquote>
+</li>
+<li>
+<p>Check a specific package installed:</p>
+<blockquote>
+<p><code>~$ conda list &lt;package-name&gt;</code></p>
+</blockquote>
+</li>
+<li>
+<p>Check all conda env created:</p>
+<blockquote>
+<p><code>~$ conda env list</code></p>
+</blockquote>
+</li>
+<li>
+<p>Remove a conda env:</p>
+<blockquote>
+<p><code>~$ conda env remove -n &lt;env-name&gt;</code></p>
+</blockquote>
+</li>
+<li>
+<p>Check current GPU status on the server:</p>
+<blockquote>
+<p><code>~$ nvidia-smi</code></p>
+</blockquote>
+</li>
+</ol>
+<p>OR check live gpu status:</p>
+<blockquote>
+<p><code>gpustat -i</code></p>
+</blockquote>
+<ol start="7">
+<li>Open up a sub-window system (this is useful for guarding the process from ssh disconnection):</li>
+</ol>
+<blockquote>
+<p><code>tmux new -s &lt;session name&gt;</code></p>
+</blockquote>
+<p>within tmux:</p>
+<ul>
+<li>
+<p>Create a new window:</p>
+<blockquote>
+<p><code>Ctrl + b</code> then <code>c</code></p>
+</blockquote>
+</li>
+<li>
+<p>Switch to the next window:</p>
+<blockquote>
+<p><code>Ctrl + b</code> then <code>n</code></p>
+</blockquote>
+</li>
+<li>
+<p>Switch to the previous window:</p>
+<blockquote>
+<p><code>Ctrl + b</code> then <code>p</code></p>
+</blockquote>
+</li>
+<li>
+<p>Detach from the current window:</p>
+<blockquote>
+<p><code>Ctrl + b</code> then <code>d</code></p>
+</blockquote>
+</li>
+<li>
+<p>Delete the current window:</p>
+<blockquote>
+<p><code>exit</code></p>
+</blockquote>
+</li>
+<li>
+<p>Scroll within a tmux window:
+     &gt; <code>Ctrl + b</code> then <code>[</code></p>
+</li>
+</ul>
+<p>Outside tmux:</p>
+<ul>
+<li>
+<p>Check all the windows:</p>
+<blockquote>
+<p><code>tmux ls</code></p>
+</blockquote>
+</li>
+<li>
+<p>Attach to a specific window:</p>
+<blockquote>
+<p><code>tmux attach -t &lt;window-name&gt;</code></p>
+</blockquote>
+</li>
+</ul>
+<ol start="8">
+<li>
+<p>Run a python script using specific GPU:</p>
+<blockquote>
+<p><code>CUDA_VISIBLE_DEVICES=&lt;gpu-id1&gt;,&lt;gpu-id2&gt;,... python &lt;script-name&gt;.py</code></p>
+</blockquote>
+</li>
+<li>
+<p>If you ever need to kill a process, you can use the command:</p>
+<blockquote>
+<p><code>kill -9 &lt;process-id&gt;</code></p>
+</blockquote>
+<p>Process ID can be found by calling <code>nvidia-smi</code>.</p>
+</li>
+<li>
+<p>To upload a file from local to the server:</p>
+<blockquote>
+<p><code>scp -P &lt;port&gt; &lt;local-file-path&gt; &lt;username&gt;@&lt;server-ip&gt;:&lt;server-file-path&gt;</code></p>
+</blockquote>
+<p>e.g.:</p>
+<blockquote>
+<p><code>scp -P 22 /Users/username/Desktop/test.txt username@server-ip:~/home/username/test.txt</code></p>
+</blockquote>
+</li>
+<li>
+<p>Download Huggingface parquet dataset:</p>
+<blockquote>
+<p>apt-get update</p>
+<p>apt-get install git-lfs</p>
+<p>git lfs install</p>
+<p>git clone \&lt;hugginface repo link&gt;</p>
+</blockquote>
+<p>This will download the actual data instead of the light parquet files. You can then decode the files to the original data.</p>
+</li>
+</ol>
+      </div>
+    </div>
+    <script src="../../effects.js"></script>
+  </body>
+</html>

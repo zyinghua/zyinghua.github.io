@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Leetcode Series — Yinghua Zhou</title>
+    <meta name="author" content="Yinghua Zhou">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+    <link rel="shortcut icon" href="../../images/favicon.jpg" type="image/jpeg">
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../pygments.css">
+  </head>
+  <body>
+    <a class="blog-tab" href="../../index.html">Home</a>
+    <div class="post">
+      <div class="post-nav"><a href="../index.html">&larr; All posts</a></div>
+      <div class="post-header">
+        <h1>Leetcode Series</h1>
+        <div class="post-meta">February 7, 2023</div>
+        <div class="post-tags"></div>
+      </div>
+      <div class="post-body">
+      <div class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+        <li><a href="#leetcode-48">Leetcode 48: Rotate Image</a></li>
+        <li><a href="#leetcode-142">Leetcode 142: Linked List Cycle II</a></li>
+        <li><a href="#leetcode-33">Leetcode 33: Search in Rotated Sorted Array</a></li>
+        <li><a href="#leetcode-1359">Leetcode 1359: Count All Valid Pickup and Delivery Options</a></li>
+        <li><a href="#leetcode-904">Leetcode 904: Fruit Into Baskets</a></li>
+        </ol>
+      </div>
+      <div class="series-item">
+        <h2 class="series-title" id="leetcode-48">Leetcode 48: Rotate Image</h2>
+<h4>Code</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Do not return anything, modify matrix in-place instead.&quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Matrix is None!&quot;</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">matrix</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span>
+                <span class="n">row</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">):</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">matrix</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span>
+                <span class="n">matrix</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+</code></pre></div>
+<h4>First step: Pre-process each row</h4>
+<p>Each index swaps with the corresponding index at the end of the row. That is:</p>
+<p>[0] swaps with [len(row) - 1], [1] swaps with [len(row) - 1 - 1], etc.</p>
+<p>len(row) // 2 in the code means we only need to swap half-length amount of time, any more swaps will swap back to the original order.</p>
+<p>An example:
+<div class="codehilite"><pre><span></span><code>1   2   3        3  2  1
+4   5   6   -&gt;   6  5  4
+7   8   9        9  8  7
+</code></pre></div></p>
+<h4>Second step: Swap bits diagonally</h4>
+<p>Imagine the matrix is composed of multiple sub-matrices, swap each diagonal corner pair (top-left with corresponding bottom-right) 
+that the top-left bit in the pair is LESS than len(matrix) - 1 - k where <code>k</code> represents the row ID. That is, if you notice the diagonal line
+starting from top-right to left-bottom, which is a line of bits that are already in their positions by the pre-process (Think about how the rotate works).
+And then we just need to swap each one counter diagonally once, therefore only swap the bits LESS than the bit in the diagonal line. 
+In the below implementation, <code>k</code> represents the row ID, <code>i</code> represents the column ID in that row.</p>
+<p>An example:
+<div class="codehilite"><pre><span></span><code>3  2  1                     7   2   1                    7   4   1                    7   4   1 
+6  5  4   -&gt; 1st k, 1st i:  6   5   4  -&gt; 1st k, 2nd i:  6   5   2  -&gt; 2nd k, 1st i:  8   5   2
+9  8  7                     9   8   3                    9   8   3                    9   6   3
+</code></pre></div></p>
+      </div>
+      <div class="series-item">
+        <h2 class="series-title" id="leetcode-142">Leetcode 142: Linked List Cycle II</h2>
+<p>This question is asking for the node where the cycle begins if there's any, without modifying the list. It may comes less intuitive at the first glance, therefore we need some kind of algorithms that can detect the cycle in a different way.</p>
+<h3><a href="https://en.wikipedia.org/wiki/Cycle_detection">Floyd's cycle-finding algorithm</a></h3>
+<p>The idea of this algorithm came up by <a href="https://en.wikipedia.org/wiki/Robert_W._Floyd">Robert W. Floyd</a>, is by using two pointers (tortoise and hare), such that one moves twice faster (2x speed) than the other, if there exists a cycle, the pointers will eventually meet at a certain point &gt;= where the cycle starts.</p>
+<h6>Following the algorithm, consider a single linked list with a cycle like this:</h6>
+<p><strong>*(Suggest drawing it out to make this clear :D)</strong></p>
+<blockquote>
+<p>Head _ _ _ {x}<em> _ _ Cycle(S)</em> _ _ {y}<em> _ _ Meeting point(M)</em> _ _ {z}<em> _ _ Cycle(S)</em> _ _ _</p>
+</blockquote>
+<p>We know that at the meeting point (M), the distance travelled by the tortoise (the slow pointer) will be x + y, and for the hare (the fast pointer) will be x + y + z + y = x + 2y + z. Since we know the time is constant and the hare moves 2x speed than the tortoise, therefore we can deduce:</p>
+<blockquote>
+<p>2 * (x + y) = x + 2y + z</p>
+<p>2x + 2y = x + 2y + z</p>
+<p>2x = x + z</p>
+<p>x = z</p>
+</blockquote>
+<p>Which means Distance (Head to Cycle start) equals to Distance (Meeting point to Cycle start).</p>
+<h5>Another way to prove the same statement:</h5>
+<blockquote>
+<p>Head _ _ _ {x} _ _ _ Cycle(S) _ _ _ {?} _ _ _ Meeting point(M) _ _ _ {?} _ _ _ (2x) _ _ _ {y} _ _ _ Cycle(S) _ _ _</p>
+</blockquote>
+<p>Assuming the distance between the Head and Cycle(S) is <code>x</code>, when the tortoise arrives at Cycle(S), the hare will be at <code>2x</code>. Assuming the distance between 2x and Cycle(S) by going forward is <code>y</code>, when the hare reaches Cycle(S) again by following the cycle, the tortoise will be at <code>x + y/2</code>.</p>
+<p>So the problem now becomes:</p>
+<blockquote>
+<p>The hare moves 2x faster than the tortoise, the distance between them now is a certain value say <code>y/2</code>, when will the hare catch the tortoise?</p>
+</blockquote>
+<p>And the answer is when the hare moves <code>y</code> distance, after a time of <code>y/2</code>.</p>
+<p>If we think about where the hare starts, it's actually Cycle(S), and after <code>y</code> distance, they will meet, so the meeting point is at <code>x + y</code>.</p>
+<p>We know that 2x to Cycle(S) is <code>y</code>, and Distance (Meeting point to 2x) is <code>2x - (x + y)</code> = <code>x - y</code>, and so Distance (Meeting point to Cycle(S)) is <code>x - y + y</code> which is <code>x</code> itself.</p>
+<p>The other case happens when the meeting point occurs before 2x:</p>
+<blockquote>
+<p>Head _ _ _ {x} _ _ _ Cycle(S) _ _ _ (2x) _ _ _ Meeting point(M) _ _ _ {?} _ _ _ Cycle(S) _ _ _</p>
+</blockquote>
+<p>We can still follow the same logic and find out the meeting point is at <code>x + y</code>. And the distance from 2x to the meeting point will be <code>x + y - 2x</code> = <code>y - x</code>. With the fact the distance between 2x and Cycle(S) by going forward is <code>y</code>, Distance (Meeting point to Cycle(S)) will be <code>y - (y - x)</code> which is <code>x</code> itself.</p>
+<p>By knowing <code>Distance (Head to Cycle start) equals to Distance (Meeting point to Cycle start)</code>, once we detect the tortoise and the hare pointers meet, we can have a pointer starting from the head that moves with a one in the meeting point at the same speed, and the point they meet up will be Cycle(S), the start of the cycle.</p>
+<h3>Summary</h3>
+<blockquote>
+<ol>
+<li>
+<p>The slow and fast pointers (tortoise and hare) will meet up if there exists a cycle, otherwise the fast pointer will reach a None node.</p>
+</li>
+<li>
+<p>When they reach at the meeting point, one moves from the head with the slow pointer moves from the meeting point at the same speed, the point they meet up is the start of the cycle.</p>
+</li>
+</ol>
+</blockquote>
+<h3>Code</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.next = None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detectCycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">head</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">while</span> <span class="n">fast</span> <span class="o">!=</span> <span class="n">slow</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fast</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="k">while</span> <span class="n">slow</span> <span class="o">!=</span> <span class="n">fast</span><span class="p">:</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="n">slow</span>
+</code></pre></div>
+      </div>
+      <div class="series-item">
+        <h2 class="series-title" id="leetcode-33">Leetcode 33: Search in Rotated Sorted Array</h2>
+<h4>General Idea</h4>
+<p>Basically on top of binary search, we make use of the first item in the list, 
+which gives information about whether the smallest is on the left or right side of the current chosen [mid], 
+and handle each case by case. To clarify: If no rotate is made, the algorithm just works as usual.</p>
+<p>Explanation at each step within the code below.</p>
+<h4>Code</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+            <span class="k">if</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                    Smallest on the left side inclusively,</span>
+<span class="sd">                    so if target is less than, it is only</span>
+<span class="sd">                    possible on the left.</span>
+<span class="sd">                    &quot;&quot;&quot;</span>
+
+                    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                    If the smallest is on the right side of mid</span>
+<span class="sd">                    caused by a possible rotate.</span>
+<span class="sd">                    &quot;&quot;&quot;</span>
+                    <span class="k">if</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+<span class="w">                        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                        nums[left] &lt; target &lt; nums[mid], </span>
+<span class="sd">                        since smallest on the right side, </span>
+<span class="sd">                        it&#39;s a perfect interval (non-decreasing).</span>
+<span class="sd">                        &quot;&quot;&quot;</span>
+
+                        <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+                        <span class="k">return</span> <span class="n">left</span>
+                    <span class="k">else</span><span class="p">:</span>
+<span class="w">                        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                        Target possibly on the second half of </span>
+<span class="sd">                        the right part.</span>
+<span class="sd">                        &quot;&quot;&quot;</span>
+
+                        <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;Smallest on the left inclusively.&quot;&quot;&quot;</span>
+                    <span class="k">if</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+<span class="w">                        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                        Since smallest on the left, leaving</span>
+<span class="sd">                        the right part non decreasing. So if </span>
+<span class="sd">                        greater, must only possible on the</span>
+<span class="sd">                        first part of the left.</span>
+<span class="sd">                        &quot;&quot;&quot;</span>
+                        <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+                        <span class="k">return</span> <span class="n">right</span>
+                    <span class="k">else</span><span class="p">:</span>
+<span class="w">                        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                        nums[mid] &lt; target &lt; nums[right],</span>
+<span class="sd">                        since smallest on the left side,</span>
+<span class="sd">                        it&#39;s a perfect interval (non-decreasing).</span>
+<span class="sd">                        &quot;&quot;&quot;</span>
+                        <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                    Smallest on the right = left part non-decreasing,</span>
+<span class="sd">                    therefore if target greater than mid, must be in </span>
+<span class="sd">                    the first part of right if exists.</span>
+<span class="sd">                    &quot;&quot;&quot;</span>
+                    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># target == nums[mid]:</span>
+                <span class="k">return</span> <span class="n">mid</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div>
+      </div>
+      <div class="series-item">
+        <h2 class="series-title" id="leetcode-1359">Leetcode 1359: Count All Valid Pickup and Delivery Options</h2>
+<h4>General Idea</h4>
+<p>Basically the idea is to iteratively count the specific "number of orders" based on the number of 
+possible sequences for "number of orders - 1"; and the number of possibilities of placing Pickup 
+and Delivery in each previous sequence, which can be calculated by summing up the first 
+<code>((number of orders - 1) * 2 + 1)</code> natural numbers.</p>
+<p>The formula might be a bit vague at the first glance, let's have a look at an example first:</p>
+<p>Suppose we are dealing with 2 orders, and we have already known that for 1 order the answer is 1, 
+which the only possible sequence is <code>(P1, D1)</code>. We want to insert <code>P2</code> and <code>D2</code> somewhere such that <code>D2</code> is 
+always after <code>P2</code>, so let's think about where we can insert <code>P2</code> first.</p>
+<p>We can insert P2 at any position in <code>(P1, D1)</code>, and all the possibilities are: <code>(P2, P1, D1)</code>, <code>(P1, P2, D1)</code> 
+and <code>(P1, D1, P2)</code> with the indices being <code>[0, 1, 2]</code>, which the number of possibilities of placing P2 is 
+exactly <code>k * 2 + 1</code>, where <code>k</code> represents the number of orders - 1, and <code>* 2</code> means each order has 2 states 
+(Pickup and Delivery).</p>
+<p>Why? You can think of it as we can insert <code>P2</code> right after any index, plus <code>P2</code> being the first before 
+all the others, that doesn't violate the conditions since we haven't inserted/considered <code>D2</code> yet.</p>
+<p>Now we can imagine where to put <code>D2</code> when <code>P2</code> is settled down, it can be anywhere as long as after <code>P2</code>, right? 
+So when <code>P2</code> is at index 0, there can be 3 possibilities <code>D2</code> can be placed, right after <code>P2</code> at index <code>1 - 
+[P2, D2, P1, D1]</code>, or after <code>P1 - [P2, P1, D2, D1]</code>, or after <code>D1 - [P2, P1, D1, D2]</code>. And when <code>P2</code> is at index 1, 
+there can be 2 possibilities (<code>D2</code> right after <code>P2 - [P1, P2, D2, D1]</code>, or at <code>the last index - [P1, P2, D1, D2]</code>). 
+And lastly when <code>P2</code> is at index 2, the only possibility is <code>[P1, D1, P2, D2]</code>. Therefore, <code>1 * (3 + 2 + 1) = 6</code> in 
+total, being the answer for 2 orders.</p>
+<p>From the above example, we can observe the pattern: When Pickup is at index say <code>x</code>, The number of possibilities 
+Delivery of the same number of orders can be placed is of <code>(k * 2 + 1) - x</code>, which means anywhere after <code>x</code> 
+(inclusively, meaning right after Pickup). Since <code>x</code> can be anything in <code>[0 .. k * 2]</code>, therefore the number of 
+possibilities to place Pickup and Delivery, given a sequence of <code>k</code> (i.e., <code>number of orders - 1</code>), is calculated 
+by <code>((k * 2 + 1) - 0, (k * 2 + 1) - 1, ... (k * 2 + 1) - k * 2)</code>. That is, for example for 3 orders, which 3 - 1 
+orders that has 4 states - (P1, D1, P2 and D2), the number of possibilities based on a given previous sequence 
+is 5 + 4 + 3 + 2 + 1 = 15, that is the sum of the first <code>(k * 2 + 1)</code> natural numbers! And since there are 6 
+possible sequences for the previous number of orders (= 2), therefore for 3 orders, the answer is 6 * 15 = 90.</p>
+<p>Overall, the answer for n orders, equals to:</p>
+<blockquote>
+<p>(The number of possible sequences for n - 1) * (The sum of the first n natural numbers)</p>
+</blockquote>
+<h4>Code</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">countOrders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The sum of the first n natural numbers: (n + 1) * n / 2.</span>
+<span class="sd">        e.g. For 10: (1 + 10) + (2 + 9) + (3 + 8) + ..., in total</span>
+<span class="sd">        that has n / 2 sets such that each set equals to n + 1.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Here i - 1 represents the previous number of orders, (* 2) represents each has 2 states Pickup and Delivery,</span>
+<span class="sd">            that together gives the total number of elements in each of it&#39;s possible sequences. Then + 1</span>
+<span class="sd">            represents other than placing the Pickup at the end of each element, it can be placed at the first index </span>
+<span class="sd">            before everyone else. Together as ((i - 1) * 2 + 1) represents the number of possible places to put the Pickup</span>
+<span class="sd">            and hence the natural number we need.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">ans</span> <span class="o">*</span> <span class="p">((((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span> <span class="o">%</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div>
+      </div>
+      <div class="series-item">
+        <h2 class="series-title" id="leetcode-904">Leetcode 904: Fruit Into Baskets</h2>
+<h4>Intuition</h4>
+<p>Question = Find the longest sub-string consists of only two numbers.</p>
+<h4>Approach</h4>
+<p>Keep track of the last seen number before the current index, while Having a pointer to the <code>start</code> of such a 
+valid sub-string that ends up in the current index (inclusively); Or if the number of the current index cannot be 
+included in the current sub-string (The first third number, which terminates the construction), update the maximum, 
+set <code>start</code> to the starting index of the last seen number (which refers to the longest valid sub-string, should the 
+current number be included). And then update the basket, which is used to keep track of the two numbers (fruits) of the 
+current sub-string.</p>
+<p>If <code>start</code> cannot make the sub-string ending up at <code>i</code> (inclusively) valid, then any starting index before <code>start</code> cannot.
+If <code>start</code> can make the sub-string ending up at <code>i</code> (inclusively) valid, then any starting index between <code>start</code> and <code>i</code> can.</p>
+<p>Complexity:
+<div class="codehilite"><pre><span></span><code>Time complexity: O(n)
+Space complexity: O(1)
+</code></pre></div></p>
+<h4>Code</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">totalFruit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fruits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">max_fruits</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">last_candidate</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">basket</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">fruits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">basket</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">basket</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">basket</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">max_fruits</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_fruits</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+                    <span class="n">start</span> <span class="o">=</span> <span class="n">last_candidate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">basket</span> <span class="o">=</span> <span class="p">[</span><span class="n">fruits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">last_candidate</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="n">fruits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">last_candidate</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">last_candidate</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">fruits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_fruits</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</code></pre></div>
+      </div>
+      </div>
+    </div>
+    <script src="../../effects.js"></script>
+  </body>
+</html>

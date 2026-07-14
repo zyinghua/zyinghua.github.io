@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Git access with VPN proxy — Yinghua Zhou</title>
+    <meta name="author" content="Yinghua Zhou">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+    <link rel="shortcut icon" href="../../images/favicon.jpg" type="image/jpeg">
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../pygments.css">
+  </head>
+  <body>
+    <a class="blog-tab" href="../../index.html">Home</a>
+    <div class="post">
+      <div class="post-nav"><a href="../index.html">&larr; All posts</a></div>
+      <div class="post-header">
+        <h1>Git access with VPN proxy</h1>
+        <div class="post-meta">June 10, 2025</div>
+        <div class="post-tags"><span class="tag">#git</span><span class="tag">#git-config</span><span class="tag">#proxy</span><span class="tag">#vpn</span><span class="tag">#china-git-solution</span></div>
+      </div>
+      <div class="post-body">
+<h3>Background:</h3>
+<p>Github operations like clone, pull, push are sometimes restricted in regions including China, posting significant inconvinience. This post shares a solution to this problem, assuming you have an access to a VPN in your region, and you are using a Windows system (Mac users may refer to a similar set of steps with slightly different commands).</p>
+<hr />
+<h3>Solution:</h3>
+<p><br></p>
+<h4>Step &lt;1&gt;</h4>
+<p>We need to find the socks5 proxy of the VPN. We can firstly check the relevant connections via <code>netstat -ano | findstr LISTENING</code> in cmd, then scroll down to find the TCP connections with port (2nd column) formulated as <code>127.0.0.1:&lt;port no.&gt;</code>.</p>
+<h4>Step &lt;2&gt;</h4>
+<p>Then, check the applications using the connection PID (4th column) via <code>tasklist /FI "PID eq &lt;PID&gt;"</code>, if it shows the name of your VPN, then it is the one.</p>
+<h4>Step &lt;3&gt;</h4>
+<p>You may have multiple ports associated with the same PID, we need to find which one is the socks5 proxy port to use. We can do so by verifying the port via <code>curl --proxy socks5h://127.0.0.1:&lt;port no.&gt; https://www.google.com</code>. If it returns a html string, then it is the one. Otherwise, it may return errors or just stuck.</p>
+<h4>Step &lt;4&gt;</h4>
+<p>Now, use the port no. in command line as:</p>
+<div class="codehilite"><pre><span></span><code>git config --global http.proxy &quot;socks5h://127.0.0.1:&lt;port no.&gt;&quot;
+git config --global https.proxy &quot;socks5h://127.0.0.1:&lt;port no.&gt;&quot;
+</code></pre></div>
+<p>Hopefully it solves your git issues!</p>
+      </div>
+    </div>
+    <script src="../../effects.js"></script>
+  </body>
+</html>

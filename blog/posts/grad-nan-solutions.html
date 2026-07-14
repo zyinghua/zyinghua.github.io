@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Potential Solutions when encountering the nan gradient problem with pytorch — Yinghua Zhou</title>
+    <meta name="author" content="Yinghua Zhou">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+    <link rel="shortcut icon" href="../../images/favicon.jpg" type="image/jpeg">
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../pygments.css">
+  </head>
+  <body>
+    <a class="blog-tab" href="../../index.html">Home</a>
+    <div class="post">
+      <div class="post-nav"><a href="../index.html">&larr; All posts</a></div>
+      <div class="post-header">
+        <h1>Potential Solutions when encountering the nan gradient problem with pytorch</h1>
+        <div class="post-meta">March 26, 2024</div>
+        <div class="post-tags"><span class="tag">#pytorch</span><span class="tag">#deep-learning</span><span class="tag">#nan-gradient</span><span class="tag">#troubleshooting</span></div>
+      </div>
+      <div class="post-body">
+<h4>When working with pytorch, NaN gradient problem can be common, here are the potential solutions that might work:</h4>
+<ol>
+<li>
+<p>Firstly make sure the <u>inputs</u> do not contain or <u>loss</u> is not <code>inf</code> or <code>NaN</code> (e.g., via printing).</p>
+</li>
+<li>
+<p>Make sure there's no division-by-zero throughout the entire computational graph. Especially also check operations like <code>x.sqrt()</code> or <code>x.pow()</code>, make sure the values involved don't cause mathmatical errors that can happen when they are too small, add an epsilon (e.g., 1e-8) if that's the case.</p>
+</li>
+<li>
+<p>Sometimes the problem can be caused by low precision rate: for example, if your tensors involved in the computation are torch.float16, try change to float32 by <code>tensor.to(torch.float32)</code>, that can help in reducing numerical instability, potentially resolving the issue, though at the cost of increased computational resources.</p>
+</li>
+<li>
+<p>Make sure the learning rate is not too large if it is involved in the problem. Also try gradient clipping to prevent gradients from becoming too large.</p>
+</li>
+<li>
+<p>Sometimes calling <code>torch.autograd.set_detect_anomaly(True)</code> as a starting point may help.</p>
+</li>
+</ol>
+      </div>
+    </div>
+    <script src="../../effects.js"></script>
+  </body>
+</html>
