@@ -17,6 +17,9 @@
   --accent-2:  #9c4a12;   /* deeper burnt orange (hover) */
   --highlight: #ffe9b0;
   --quote:     #35302a;   /* blockquote text */
+  --award:     #7d4a5c;   /* award label: plum — warm enough for the palette, clearly not a link */
+  --award-bg:  transparent;
+  --award-bd:  #e0c8d1;
 
   --serif-display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --serif-body:    'Newsreader', Georgia, 'Times New Roman', serif;
@@ -34,6 +37,9 @@
   --accent-2:  #f4b276;
   --highlight: #4d3f1c;
   --quote:     #d8d1c5;
+  --award:     #d9a3b6;
+  --award-bg:  transparent;
+  --award-bd:  #553a46;
 }
 :root[data-theme="dark"] body { color: var(--ink); }
 
@@ -149,6 +155,31 @@ span.highlight { background-color: var(--highlight); }
 .entries p { margin: 0.28em 0; }
 .entries p:empty { margin: 0; display: none; }
 .entries .papertitle { line-height: 1.25; }
+
+/* award label on a venue line (Oral, Spotlight, Best Paper, ...).
+   Outlined in plum — warm enough to sit in the palette, far enough from
+   --accent that it never reads as a link; tokens flip in night mode.
+   Geometry is tuned so the caps sit centred in the box AND the box sits
+   centred on the venue text — see the padding/vertical-align notes below. */
+.award-tag {
+  display: inline-block;
+  font-family: var(--serif-body);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--award);
+  background: var(--award-bg);
+  border: 1px solid var(--award-bd);
+  border-radius: 3px;
+  padding: 3px 6px 0;    /* caps have no descenders — the extra top padding re-centres the
+                            ink in the box, which an even padding leaves sitting high */
+  margin-left: 1px;      /* the inline space in the markup adds ~4px on top of this */
+  vertical-align: 1px;   /* box centre on the venue text's cap-height centre; the top
+                            padding above already shifts the box up by 2px */
+  white-space: nowrap;
+}
 
 /* ============================================================
    Blog / Home tab — a simple link, aligned to the content's right edge
